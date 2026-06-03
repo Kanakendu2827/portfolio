@@ -2,12 +2,13 @@ import React, { useState } from "react"
 import { Link } from "react-router-dom"
 
 const navItems = [
-  { label: "Home", to: "/#home" },
-  { label: "About", to: "/#about" },
-  { label: "Skills", to: "/#skills" },
-  { label: "Work", to: "/#work" },
-  { label: "Education", to: "/#education" },
+  { label: "Home", href: "/#home" },
+  { label: "About", href: "/#about" },
+  { label: "Skills", href: "/#skills" },
+  { label: "Work", href: "/#work" },
+  { label: "Education", href: "/#education" },
   { label: "Contact", to: "/contact" },
+  { label: "GitHub", href: "https://github.com/your-github-username", external: true },
 ]
 
 export const Navbar = () => {
@@ -16,20 +17,34 @@ export const Navbar = () => {
   return (
     <header className="sticky top-0 z-30 w-full border-b border-white/10 bg-slate-950/60 backdrop-blur-xl">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 md:px-6">
-        <a href="#home" className="text-lg font-semibold tracking-tight text-white transition hover:text-cyan-300 md:text-xl">
+        <a href="/#home" className="text-lg font-semibold tracking-tight text-white transition hover:text-cyan-300 md:text-xl">
           <span className="text-cyan-400">Kanakendu</span> Portfolio
         </a>
 
         <nav className="hidden items-center gap-2 md:flex">
-          {navItems.map((item) => (
-            <Link
-              key={item.to}
-              to={item.to}
-              className="rounded-full px-4 py-2 text-sm font-medium text-gray-300 transition duration-200 hover:bg-white/10 hover:text-white"
-            >
-              {item.label}
-            </Link>
-          ))}
+          {navItems.map((item) => {
+            const isExternal = item.external === true
+            const classes = "rounded-full px-4 py-2 text-sm font-medium text-gray-300 transition duration-200 hover:bg-white/10 hover:text-white"
+
+            if (item.to) {
+              return (
+                <Link key={item.label} to={item.to} className={classes}>
+                  {item.label}
+                </Link>
+              )
+            }
+
+            return (
+              <a
+                key={item.label}
+                href={item.href}
+                className={classes}
+                {...(isExternal ? { target: "_blank", rel: "noreferrer" } : {})}
+              >
+                {item.label}
+              </a>
+            )
+          })}
         </nav>
 
 
@@ -53,16 +68,35 @@ export const Navbar = () => {
 
       <div className={`md:hidden overflow-hidden bg-slate-950/95 transition-all duration-300 ${open ? "max-h-96" : "max-h-0"}`}>
         <div className="space-y-1 px-4 pb-4">
-          {navItems.map((item) => (
-            <Link
-              key={item.to}
-              to={item.to}
-              className="block rounded-2xl px-4 py-3 text-base font-medium text-gray-200 transition duration-200 hover:bg-cyan-500/10 hover:text-white"
-              onClick={() => setOpen(false)}
-            >
-              {item.label}
-            </Link>
-          ))}
+          {navItems.map((item) => {
+            const isExternal = item.external === true
+            const classes = "block rounded-2xl px-4 py-3 text-base font-medium text-gray-200 transition duration-200 hover:bg-cyan-500/10 hover:text-white"
+
+            if (item.to) {
+              return (
+                <Link
+                  key={item.label}
+                  to={item.to}
+                  className={classes}
+                  onClick={() => setOpen(false)}
+                >
+                  {item.label}
+                </Link>
+              )
+            }
+
+            return (
+              <a
+                key={item.label}
+                href={item.href}
+                className={classes}
+                onClick={() => setOpen(false)}
+                {...(isExternal ? { target: "_blank", rel: "noreferrer" } : {})}
+              >
+                {item.label}
+              </a>
+            )
+          })}
         </div>
       </div>
     </header>
