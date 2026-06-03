@@ -2,11 +2,11 @@ import React, { useState } from "react"
 import { Link } from "react-router-dom"
 
 const navItems = [
-  { label: "Home", href: "/#home" },
-  { label: "About", href: "/#about" },
-  { label: "Skills", href: "/#skills" },
-  { label: "Work", href: "/#work" },
-  { label: "Education", href: "/#education" },
+  { label: "Home", to: { pathname: "/", hash: "#home" } },
+  { label: "About", to: { pathname: "/", hash: "#about" } },
+  { label: "Skills", to: { pathname: "/", hash: "#skills" } },
+  { label: "Work", to: { pathname: "/", hash: "#work" } },
+  { label: "Education", to: { pathname: "/", hash: "#education" } },
   { label: "Contact", to: "/contact" },
   { label: "GitHub", href: "https://github.com/your-github-username", external: true },
 ]
@@ -17,9 +17,9 @@ export const Navbar = () => {
   return (
     <header className="sticky top-0 z-30 w-full border-b border-white/10 bg-slate-950/60 backdrop-blur-xl">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 md:px-6">
-        <a href="/#home" className="text-lg font-semibold tracking-tight text-white transition hover:text-cyan-300 md:text-xl">
+        <Link to={{ pathname: "/", hash: "#home" }} className="text-lg font-semibold tracking-tight text-white transition hover:text-cyan-300 md:text-xl">
           <span className="text-cyan-400">Kanakendu</span> Portfolio
-        </a>
+        </Link>
 
         <nav className="hidden items-center gap-2 md:flex">
           {navItems.map((item) => {
