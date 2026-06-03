@@ -18,7 +18,7 @@ export const Navbar = () => {
     <header className="sticky top-0 z-30 w-full border-b border-white/10 bg-slate-950/60 backdrop-blur-xl">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 md:px-6">
         <Link to={{ pathname: "/", hash: "#home" }} className="text-lg font-semibold tracking-tight text-white transition hover:text-cyan-300 md:text-xl">
-          <span className="text-cyan-400">Kanakendu</span> Portfolio
+          <span className="text-cyan-400">Kanakendu </span> Portfolio
         </Link>
 
         <nav className="hidden items-center gap-2 md:flex">

@@ -1,15 +1,16 @@
 ﻿import React from 'react'
 
 const projectItems = [
-  // Add your own project objects here.
-  // Example:
-  // {
-  //   title: 'Project Title',
-  //   description: 'A short description of what this project does and which technologies you used.',
-  //   features: ['React', 'Tailwind CSS', 'API integration'],
-  //   liveLink: 'https://your-project-url.com',
-  //   cta: 'View Project',
-  // },
+  {
+    icon: '⛅',
+    title: 'Weather Website',
+    description:
+      'A responsive weather website deployed on Vercel that shows current weather details and looks great on mobile and desktop.',
+    features: ['React', 'Tailwind CSS', 'API integration', 'Vercel'],
+    liveLink: 'https://weather-website-iota-seven.vercel.app/',
+    githubLink: 'https://github.com/dashboard',
+    cta: 'View Live',
+  },
 ]
 
 export const Work = () => {
@@ -32,7 +33,14 @@ export const Work = () => {
             >
               <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
                 <div>
-                  <h3 className="text-2xl font-semibold text-white">{project.title}</h3>
+                  <h3 className="flex items-center gap-3 text-2xl font-semibold text-white">
+                    {project.icon ? (
+                      <span className="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-cyan-500/10 text-xl">
+                        {project.icon}
+                      </span>
+                    ) : null}
+                    {project.title}
+                  </h3>
                   <p className="mt-3 text-slate-300">{project.description}</p>
                 </div>
                 <span className="inline-flex items-center rounded-full bg-cyan-500/10 px-3 py-1 text-sm text-cyan-200">
@@ -53,16 +61,29 @@ export const Work = () => {
                 </div>
               ) : null}
 
-              {project.liveLink ? (
-                <div className="mt-8">
-                  <a
-                    href={project.liveLink}
-                    className="inline-flex items-center justify-center rounded-full bg-cyan-500 px-6 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-400"
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    {project.cta || 'View Project'}
-                  </a>
+              {(project.liveLink || project.githubLink) ? (
+                <div className="mt-8 flex flex-wrap gap-3">
+                  {project.liveLink ? (
+                    <a
+                      href={project.liveLink}
+                      className="inline-flex items-center justify-center rounded-full bg-cyan-500 px-6 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-400"
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      {project.cta || 'Live Site'}
+                    </a>
+                  ) : null}
+
+                  {project.githubLink ? (
+                    <a
+                      href={project.githubLink}
+                      className="inline-flex items-center justify-center rounded-full border border-white/10 bg-slate-900/80 px-6 py-3 text-sm font-semibold text-white transition hover:border-cyan-400 hover:text-cyan-200"
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      View GitHub
+                    </a>
+                  ) : null}
                 </div>
               ) : null}
             </div>
