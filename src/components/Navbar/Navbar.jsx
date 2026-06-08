@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 const navItems = [
   { label: "Home", to: { pathname: "/", hash: "#home" } },
@@ -8,11 +8,35 @@ const navItems = [
   { label: "Work", to: { pathname: "/", hash: "#work" } },
   { label: "Education", to: { pathname: "/", hash: "#education" } },
   { label: "Contact", to: "/contact" },
-  { label: "GitHub", href: "https://github.com/your-github-username", external: true },
+  
 ]
 
 export const Navbar = () => {
   const [open, setOpen] = useState(false)
+  const navigate = useNavigate()
+
+  const handleHashNavigation = (to) => {
+    const hash = to.hash || ''
+    const pathname = to.pathname || '/' 
+
+    const scrollToHash = () => {
+      const id = hash.replace('#', '')
+      const el = document.getElementById(id)
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' })
+      } else {
+        // fallback: set location hash
+        window.location.hash = hash
+      }
+    }
+
+    if (window.location.pathname === pathname) {
+      scrollToHash()
+    } else {
+      navigate(pathname)
+      setTimeout(scrollToHash, 60)
+    }
+  }
 
   return (
     <header className="sticky top-0 z-30 w-full border-b border-white/10 bg-slate-950/60 backdrop-blur-xl">
@@ -25,6 +49,22 @@ export const Navbar = () => {
           {navItems.map((item) => {
             const isExternal = item.external === true
             const classes = "rounded-full px-4 py-2 text-sm font-medium text-gray-300 transition duration-200 hover:bg-white/10 hover:text-white"
+
+            if (item.to && typeof item.to === 'object' && item.to.hash) {
+              return (
+                <a
+                  key={item.label}
+                  href={item.to.hash}
+                  className={classes}
+                  onClick={(e) => {
+                    e.preventDefault()
+                    handleHashNavigation(item.to)
+                  }}
+                >
+                  {item.label}
+                </a>
+              )
+            }
 
             if (item.to) {
               return (
@@ -71,6 +111,23 @@ export const Navbar = () => {
           {navItems.map((item) => {
             const isExternal = item.external === true
             const classes = "block rounded-2xl px-4 py-3 text-base font-medium text-gray-200 transition duration-200 hover:bg-cyan-500/10 hover:text-white"
+
+            if (item.to && typeof item.to === 'object' && item.to.hash) {
+              return (
+                <a
+                  key={item.label}
+                  href={item.to.hash}
+                  className={classes}
+                  onClick={(e) => {
+                    e.preventDefault()
+                    setOpen(false)
+                    handleHashNavigation(item.to)
+                  }}
+                >
+                  {item.label}
+                </a>
+              )
+            }
 
             if (item.to) {
               return (

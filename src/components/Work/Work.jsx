@@ -8,8 +8,18 @@ const projectItems = [
       'A responsive weather website deployed on Vercel that shows current weather details and looks great on mobile and desktop.',
     features: ['React', 'Tailwind CSS', 'API integration', 'Vercel'],
     liveLink: 'https://weather-website-iota-seven.vercel.app/',
-    githubLink: 'https://github.com/dashboard',
+    githubLink: 'https://github.com/Kanakendu2827',
     cta: 'View Live',
+  },
+  {
+    icon: '🛂',
+    title: 'Passport Photo Generator',
+    description:
+      'An online passport-photo generator with cropping, background handling, and print-ready layouts.',
+    features: ['React', 'Tailwind CSS', 'Image processing', 'Vercel'],
+    liveLink: 'https://passport-photo-pi.vercel.app/',
+    githubLink: 'https://github.com/Kanakendu2827/Passport-Photo',
+    cta: 'Try it',
   },
 ]
 

@@ -25,13 +25,13 @@ jobs:
         run: npm run build
 
       - name: Add CNAME for custom domain
-        run: echo "kanakenddas.in" > dist/CNAME
+        run: echo "kanakenddas.in" > docs/CNAME
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
+          publish_dir: ./docs
           publish_branch: gh-pages
           force_orphan: true
           keep_files: false
