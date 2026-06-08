@@ -19,7 +19,7 @@ const projectItems = [
     features: ['React', 'Tailwind CSS', 'Image processing', 'Vercel'],
     liveLink: 'https://passport-photo-pi.vercel.app/',
     githubLink: 'https://github.com/Kanakendu2827/Passport-Photo',
-    cta: 'Try it',
+    cta: 'View Live',
   },
 ]
 
