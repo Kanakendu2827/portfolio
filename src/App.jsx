@@ -7,7 +7,6 @@ import Skills from "./components/Skills/Skills";
 import Work from "./components/Work/Work";
 import Footer from "./components/Footer/Footer";
 import Edu from "./components/Education/Edu";
-import CertificateSlider from "./components/Footer/CertificateSlider";
 import ContactPage from "./pages/ContactPage";
 import heroImage from "./assets/hero.png";
 
@@ -95,12 +94,6 @@ const Home = () => (
     <section id="education" className="py-24 px-4">
       <Edu />
     </section>
-
-    <div className="py-8 px-4">
-      <div className="mx-auto max-w-5xl">
-        <CertificateSlider />
-      </div>
-    </div>
 
     <Footer />
   </>
