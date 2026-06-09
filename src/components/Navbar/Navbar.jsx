@@ -1,5 +1,6 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
+import { toggleTheme } from "../../utils/theme"
 
 const navItems = [
   { label: "Home", to: { pathname: "/", hash: "#home" } },
@@ -13,7 +14,18 @@ const navItems = [
 
 export const Navbar = () => {
   const [open, setOpen] = useState(false)
+  const [theme, setTheme] = useState('dark')
   const navigate = useNavigate()
+
+  useEffect(() => {
+    if (typeof document !== 'undefined') {
+      setTheme(document.documentElement.classList.contains('dark') ? 'dark' : 'light')
+    }
+  }, [])
+
+  const handleThemeToggle = () => {
+    setTheme(toggleTheme())
+  }
 
   const handleHashNavigation = (to) => {
     const hash = to.hash || ''
@@ -39,16 +51,16 @@ export const Navbar = () => {
   }
 
   return (
-    <header className="sticky top-0 z-30 w-full border-b border-white/10 bg-slate-950/60 backdrop-blur-xl">
+    <header className="sticky top-0 z-30 w-full border-b border-slate-200/10 bg-white/80 backdrop-blur-xl transition-colors duration-200 dark:border-white/10 dark:bg-slate-950/60">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 md:px-6">
-        <Link to={{ pathname: "/", hash: "#home" }} className="text-lg font-semibold tracking-tight text-white transition hover:text-cyan-300 md:text-xl">
+        <Link to={{ pathname: "/", hash: "#home" }} className="text-lg font-semibold tracking-tight text-slate-900 transition hover:text-cyan-300 md:text-xl dark:text-white">
           <span className="text-cyan-400">Kanakendu </span> Portfolio
         </Link>
 
         <nav className="hidden items-center gap-2 md:flex">
           {navItems.map((item) => {
             const isExternal = item.external === true
-            const classes = "rounded-full px-4 py-2 text-sm font-medium text-gray-300 transition duration-200 hover:bg-white/10 hover:text-white"
+            const classes = "rounded-full px-4 py-2 text-sm font-medium text-slate-700 transition duration-200 hover:bg-slate-100 hover:text-slate-900 dark:text-gray-300 dark:hover:bg-white/10 dark:hover:text-white"
 
             if (item.to && typeof item.to === 'object' && item.to.hash) {
               return (
@@ -87,6 +99,30 @@ export const Navbar = () => {
           })}
         </nav>
 
+        <button
+          type="button"
+          onClick={handleThemeToggle}
+          className="mr-2 inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-200/70 bg-slate-100 text-slate-900 transition duration-200 hover:border-cyan-400 hover:text-cyan-300 dark:border-white/10 dark:bg-slate-950 dark:text-white"
+          aria-label="Toggle light and dark theme"
+        >
+          {theme === 'dark' ? (
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M12 3v2" />
+              <path d="M12 19v2" />
+              <path d="M4.22 4.22l1.42 1.42" />
+              <path d="M18.36 18.36l1.42 1.42" />
+              <path d="M1 12h2" />
+              <path d="M21 12h2" />
+              <path d="M4.22 19.78l1.42-1.42" />
+              <path d="M18.36 5.64l1.42-1.42" />
+              <circle cx="12" cy="12" r="5" />
+            </svg>
+          ) : (
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z" />
+            </svg>
+          )}
+        </button>
 
         <button
           type="button"
@@ -106,11 +142,11 @@ export const Navbar = () => {
         </button>
       </div>
 
-      <div className={`md:hidden overflow-hidden bg-slate-950/95 transition-all duration-300 ${open ? "max-h-96" : "max-h-0"}`}>
+      <div className={`md:hidden overflow-hidden bg-slate-50/95 transition-all duration-300 dark:bg-slate-950/95 ${open ? "max-h-96" : "max-h-0"}`}>
         <div className="space-y-1 px-4 pb-4">
           {navItems.map((item) => {
             const isExternal = item.external === true
-            const classes = "block rounded-2xl px-4 py-3 text-base font-medium text-gray-200 transition duration-200 hover:bg-cyan-500/10 hover:text-white"
+            const classes = "block rounded-2xl px-4 py-3 text-base font-medium text-slate-800 transition duration-200 hover:bg-cyan-500/10 hover:text-slate-900 dark:text-gray-200 dark:hover:text-white"
 
             if (item.to && typeof item.to === 'object' && item.to.hash) {
               return (

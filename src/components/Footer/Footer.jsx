@@ -23,6 +23,12 @@ const Footer = () => {
               <p className="text-sm text-slate-400">Phone</p>
               <a href="tel:+919748327696" className="text-lg font-semibold text-white hover:text-cyan-300 transition">+91 9748327696</a>
             </div>
+            <div>
+              <p className="text-sm text-slate-400">GitHub</p>
+              <a href="https://github.com/Kanakendu2827/portfolio" target="_blank" rel="noreferrer" className="text-lg font-semibold text-white hover:text-cyan-300 transition">
+                github.com/Kanakendu2827/portfolio
+              </a>
+            </div>
           </div>
         </div>
       </div>

@@ -7,6 +7,7 @@ import Skills from "./components/Skills/Skills";
 import Work from "./components/Work/Work";
 import Footer from "./components/Footer/Footer";
 import Edu from "./components/Education/Edu";
+import CertificateSlider from "./components/Footer/CertificateSlider";
 import ContactPage from "./pages/ContactPage";
 import heroImage from "./assets/hero.png";
 
@@ -95,18 +96,24 @@ const Home = () => (
       <Edu />
     </section>
 
+    <div className="py-8 px-4">
+      <div className="mx-auto max-w-5xl">
+        <CertificateSlider />
+      </div>
+    </div>
+
     <Footer />
   </>
 );
 
 function App() {
   return (
-    <div className="relative min-h-screen bg-[#0a0a0a] text-white overflow-hidden">
+    <div className="relative min-h-screen bg-slate-100 text-slate-900 transition-colors duration-200 dark:bg-slate-950 dark:text-white overflow-hidden">
       {/* Grid Background */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f20_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f20_1px,transparent_1px)] bg-[size:20px_20px]" />
 
       {/* Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-purple-900/10 via-transparent to-cyan-900/10" />
+      <div className="absolute inset-0 bg-gradient-to-b from-purple-500/10 via-transparent to-cyan-500/10 dark:from-purple-900/10 dark:to-cyan-900/10" />
 
       {/* Glow Effects */}
       <div className="absolute top-20 left-20 w-72 h-72 bg-purple-500/20 rounded-full blur-3xl animate-pulse" />
