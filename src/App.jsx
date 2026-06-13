@@ -1,5 +1,6 @@
 import React from "react";
 import { Routes, Route, Link } from "react-router-dom";
+import { motion } from "framer-motion";
 import { TypeAnimation } from "react-type-animation";
 import Navbar from "./components/Navbar/Navbar";
 import About from "./components/About/About";
@@ -14,10 +15,13 @@ const Home = () => (
   <>
     <section id="home" className="min-h-screen flex flex-col justify-center items-center text-center px-4">
       <div className="mb-10 flex items-center justify-center">
-        <img
+        <motion.img
           src={heroImage}
           alt="Kanakendu Das"
-          className="h-65 w-65 rounded-full object-cover border-4 border-cyan-500/20 shadow-2xl shadow-cyan-500/20"
+          className="h-72 w-72 rounded-full object-cover border-4 border-cyan-500/20 shadow-2xl shadow-cyan-500/20"
+          initial={{ y: -10, scale: 0.95 }}
+          animate={{ y: [0, -16, 0], scale: [0.98, 1.02, 0.98] }}
+          transition={{ duration: 6, ease: "easeInOut", repeat: Infinity }}
         />
       </div>
 
