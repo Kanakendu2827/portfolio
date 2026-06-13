@@ -21,6 +21,16 @@ const projectItems = [
     githubLink: 'https://github.com/Kanakendu2827/Passport-Photo',
     cta: 'View Live',
   },
+  {
+    icon: '🤖',
+    title: 'My AI Assistant',
+    description:
+      'A chatbot assistant built with modern web technologies, deployed live on Vercel for interactive AI conversations.',
+    features: ['React', 'Chatbot', 'AI Assistant', 'Vercel'],
+    liveLink: 'https://chat-bot-zv5g.vercel.app/',
+    githubLink: 'https://github.com/Kanakendu2827/Chat-Bot',
+    cta: 'View Live',
+  },
 ]
 
 export const Work = () => {
